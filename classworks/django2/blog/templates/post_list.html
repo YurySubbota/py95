@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% for post in posts %}
+        <h1>{{ post.title }}</h1>
+        <div class="date">
+            {{ post.created_at }} by {{ post.author.username }}
+        </div>
+        {% for tag in posts.tags.all %}
+            {{ tag.name }}
+        {% endfor %}
+
+
+    {% endfor %}
+    <hr>
+    {% include 'pagination.html' with page=posts %}
+{% endblock %}

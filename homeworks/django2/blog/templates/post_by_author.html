@@ -1,12 +1,15 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1> {{ tag.name }}</h1>
+    <h1> {{ author.username }}</h1>
     {% for post in posts %}
         <h1><a href="{% url 'post' post_id=post.id %}">{{ post.title }}</a> </h1>
         <div class="date">
-            {{ post.created_at }} by {{ post.author.username }}
+            {{ post.created_at }}
         </div>
+        {% for tag in post.tags.all %}
+            <a href="{% url 'posts_by_tag' tag_slug=tag.slug %}" {{ tag.name }}>{{ tag.name }}</a>
+        {% endfor %}
 
     {% endfor %}
 {% endblock %}

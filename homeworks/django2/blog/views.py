@@ -69,7 +69,6 @@ def edit_post(request, post_id):
         if form.is_valid():
             post = form.save(commit=False)
             post.id = post_id
-            post.author = request.user
             post.save()
             form.save_m2m()
             return redirect(f'/post/{post_id}/')
